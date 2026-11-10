@@ -1,0 +1,59 @@
+<view class="page">
+
+  <!-- 商家信息 -->
+  <view class="profile">
+    <view class="avatar">{{initial}}</view>
+    <view class="profile-main">
+      <view class="profile-name">{{merchant.name || '未命名商家'}}</view>
+      <view class="profile-meta">
+        <text class="tag {{merchant.status === 'active' ? 'tag-success' : 'tag-plain'}}">{{statusText}}</text>
+        <text class="profile-role">角色：{{merchant.role === 'owner' ? '管理员' : merchant.role}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 账号相关 -->
+  <view class="group-title">账号</view>
+  <view class="group">
+    <view class="row-item" bindtap="onSenderInfo">
+      <text class="ri-label">发货信息（默认寄件人）</text>
+      <text class="ri-arrow">›</text>
+    </view>
+    <view class="row-item" bindtap="onExpressAccount">
+      <text class="ri-label">快递账户</text>
+      <text class="ri-value">{{merchant.expressCount || 0}} 个</text>
+      <text class="ri-arrow">›</text>
+    </view>
+    <view class="row-item" bindtap="onImportRecords">
+      <text class="ri-label">导入记录</text>
+      <text class="ri-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 其他 -->
+  <view class="group-title">其他</view>
+  <view class="group">
+    <view class="row-item" bindtap="onPrivacy">
+      <text class="ri-label">隐私保护指引</text>
+      <text class="ri-arrow">›</text>
+    </view>
+    <view class="row-item" bindtap="onContact">
+      <text class="ri-label">联系客服</text>
+      <text class="ri-arrow">›</text>
+    </view>
+    <view class="row-item" bindtap="onClearCache">
+      <text class="ri-label">清除本地缓存</text>
+      <text class="ri-arrow">›</text>
+    </view>
+    <view class="row-item" bindtap="onAbout">
+      <text class="ri-label">关于发货助手</text>
+      <text class="ri-value">v1.0.0</text>
+      <text class="ri-arrow">›</text>
+    </view>
+  </view>
+
+  <view class="footer">
+    <text>本工具仅用于商家内部发货作业</text>
+  </view>
+
+</view>

@@ -1,0 +1,40 @@
+.lm {
+  padding: 32rpx 0 48rpx;
+}
+
+.lm-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14rpx;
+  font-size: 24rpx;
+  color: #9aa4b2;
+}
+
+.lm-spinner {
+  width: 26rpx;
+  height: 26rpx;
+  border: 3rpx solid #d8dfea;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: lm-spin 0.8s linear infinite;
+}
+
+@keyframes lm-spin {
+  to { transform: rotate(360deg); }
+}
+
+.lm-nomore {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20rpx;
+  font-size: 22rpx;
+  color: #c2c9d4;
+}
+
+.lm-line {
+  width: 60rpx;
+  height: 1rpx;
+  background: #e6eaf1;
+}

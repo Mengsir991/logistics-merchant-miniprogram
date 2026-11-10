@@ -1,0 +1,57 @@
+<view class="page">
+
+  <!-- 加载 -->
+  <block wx:if="{{loading}}">
+    <view class="loading-box">
+      <view class="loading-ring"></view>
+      <text class="loading-text">正在准备面单…</text>
+    </view>
+  </block>
+
+  <!-- 错误 -->
+  <block wx:elif="{{error}}">
+    <view class="card" style="margin-top:80rpx">
+      <empty-state icon="🖨" text="无法打单" desc="{{error}}" button-text="重试" bind:action="onRetry" />
+    </view>
+  </block>
+
+  <!-- 面单 -->
+  <block wx:else>
+    <view class="topbar">
+      <view class="row" style="gap:14rpx">
+        <text class="progress">第 {{index + 1}} / {{total}} 单</text>
+        <text class="tag tag-primary">{{current.expressName}}</text>
+      </view>
+      <text class="copy" bindtap="onCopyWaybill">复制单号</text>
+    </view>
+
+    <view class="warn" wx:if="{{current._waybillError}}">
+      ⚠️ 取号失败：{{current._waybillError}}（该单显示的是历史面单数据）
+    </view>
+
+    <view class="label-wrap">
+      <image
+        wx:if="{{useImage}}"
+        class="label-img"
+        src="{{current.label.imageUrl}}"
+        mode="widthFix"
+      />
+      <canvas wx:else type="2d" id="label" class="label-canvas"></canvas>
+    </view>
+
+    <view class="hint">
+      <text class="hint-title">关于条码</text>
+      <text class="hint-text">预览版式中的条码区由快递服务商生成。正式发货请使用服务商返回的面单图打印，否则快递员扫码会失败。</text>
+    </view>
+
+    <view class="bottom-bar">
+      <view class="btn btn-plain btn-sm" bindtap="onPrev">上一单</view>
+      <view class="btn btn-plain btn-sm" bindtap="onSaveImage">存图</view>
+      <view class="btn btn-plain btn-sm" bindtap="onBluetoothPrint" wx:if="{{!useImage}}">蓝牙</view>
+      <view class="btn btn-primary btn-sm flex-1" bindtap="onDone">
+        {{index === total - 1 ? '完成打单' : '完成，下一单'}}
+      </view>
+    </view>
+  </block>
+
+</view>

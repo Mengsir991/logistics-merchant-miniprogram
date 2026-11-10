@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/order-list/order-list",
+    "pages/mine/mine"
+  ],
+  "subPackages": [
+    {
+      "root": "pagesShip",
+      "name": "ship",
+      "pages": [
+        "batch-import/batch-import",
+        "order-detail/order-detail",
+        "print/print"
+      ]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": ["ship"]
+    },
+    "pages/order-list/order-list": {
+      "network": "all",
+      "packages": ["ship"]
+    }
+  },
+  "window": {
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTitleText": "发货助手",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f4f6fa",
+    "backgroundTextStyle": "dark",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#8a94a6",
+    "selectedColor": "#2563eb",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "工作台"
+      },
+      {
+        "pagePath": "pages/order-list/order-list",
+        "text": "运单"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

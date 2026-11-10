@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "批量导入",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/empty-state"
+  }
+}

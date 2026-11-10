@@ -1,0 +1,108 @@
+<view class="page {{selectedCount > 0 ? 'page-with-bar' : ''}}">
+
+  <!-- ===== 吸顶：搜索 + 分段筛选 ===== -->
+  <view class="sticky">
+    <view class="search">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        value="{{keyword}}"
+        placeholder="订单号 / 运单号 / 收件人 / 电话"
+        placeholder-class="search-ph"
+        confirm-type="search"
+        bindinput="onKeywordInput"
+        bindconfirm="onSearch"
+      />
+      <text wx:if="{{keyword}}" class="search-clear" bindtap="onClearKeyword">✕</text>
+    </view>
+
+    <scroll-view class="tabs" scroll-x enable-flex show-scrollbar="{{false}}">
+      <view
+        class="tab {{status === item.key ? 'tab-on' : ''}}"
+        wx:for="{{tabs}}"
+        wx:key="key"
+        data-key="{{item.key}}"
+        bindtap="onSwitchTab"
+      >{{item.label}}</view>
+    </scroll-view>
+  </view>
+
+  <!-- ===== 汇总条 ===== -->
+  <view class="summary" wx:if="{{firstLoaded && list.length}}">
+    <text class="summary-total">共 {{total}} 单</text>
+    <view class="selall" bindtap="onToggleAll">
+      <view class="cb {{allChecked ? 'cb-on' : ''}}">{{allChecked ? '✓' : ''}}</view>
+      <text>全选本页</text>
+    </view>
+  </view>
+
+  <!-- ===== 首屏骨架 ===== -->
+  <block wx:if="{{loading && !list.length}}">
+    <view class="skeleton" wx:for="{{[1,2,3]}}" wx:key="*this">
+      <view class="sk-line" style="width:35%"></view>
+      <view class="sk-line" style="width:85%"></view>
+      <view class="sk-line" style="width:55%"></view>
+    </view>
+  </block>
+
+  <!-- ===== 列表 ===== -->
+  <block wx:elif="{{list.length}}">
+    <view class="item" wx:for="{{list}}" wx:key="_id">
+      <view class="cb-wrap" data-index="{{index}}" catchtap="onToggleSelect">
+        <view class="cb {{item.checked ? 'cb-on' : ''}}">{{item.checked ? '✓' : ''}}</view>
+      </view>
+
+      <view class="item-main" data-id="{{item._id}}" bindtap="onTapOrder">
+        <view class="between">
+          <view class="row" style="gap:12rpx">
+            <text class="express">{{item.expressName}}</text>
+            <text class="tag {{item.statusClass}}">{{item.statusText}}</text>
+          </view>
+          <text class="muted">{{item.timeText}}</text>
+        </view>
+
+        <view class="recv">
+          <text class="recv-name">{{item.receiver.name}}</text>
+          <text class="recv-phone">{{item.receiver.phone}}</text>
+        </view>
+        <view class="recv-addr">{{item.regionLine}} {{item.receiver.detail}}</view>
+
+        <view class="foot">
+          <text class="waybill {{item.waybillNo ? '' : 'waybill-empty'}}">{{item.waybillNo || '未取号'}}</text>
+          <text class="muted">{{item.goods.weight}}kg · {{item.goods.count}}件</text>
+        </view>
+      </view>
+    </view>
+
+    <load-more loading="{{loading}}" has-more="{{hasMore}}" empty="{{false}}" />
+  </block>
+
+  <!-- ===== 空 / 错误 ===== -->
+  <empty-state
+    wx:elif="{{error}}"
+    icon="⚠️"
+    text="加载失败"
+    desc="{{error}}"
+    button-text="重试"
+    bind:action="reload"
+  />
+
+  <empty-state
+    wx:else
+    icon="📭"
+    text="{{keyword ? '没有匹配的运单' : '该状态下暂无运单'}}"
+    desc="{{keyword ? '换个关键词试试' : '去批量导入订单开始发货'}}"
+    button-text="{{keyword ? '' : '批量导入'}}"
+    bind:action="onGoImport"
+  />
+
+  <!-- ===== 批量操作条 ===== -->
+  <view class="bottom-bar" wx:if="{{selectedCount > 0}}">
+    <view class="bar-info">
+      已选 <text class="bar-num">{{selectedCount}}</text> 单
+    </view>
+    <view class="btn btn-plain btn-sm" bindtap="onBatchCancel">批量取消</view>
+    <view class="btn btn-primary btn-sm bar-main" bindtap="onBatchPrint">取号并打印</view>
+  </view>
+
+</view>

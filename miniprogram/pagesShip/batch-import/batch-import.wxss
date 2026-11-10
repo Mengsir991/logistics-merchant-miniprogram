@@ -1,0 +1,326 @@
+.page {
+  padding-bottom: 200rpx;
+}
+
+/* ===== 格式说明 ===== */
+.tip-card {
+  background: #f7f9ff;
+  border: 1rpx solid #e3ecff;
+}
+
+.tip-title {
+  font-size: 26rpx;
+  font-weight: 600;
+  color: #2563eb;
+  margin-bottom: 12rpx;
+}
+
+.tip-desc {
+  font-size: 23rpx;
+  color: #6b7688;
+  line-height: 1.6;
+}
+
+.tip-cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10rpx;
+  margin-top: 16rpx;
+}
+
+.tip-col {
+  font-size: 21rpx;
+  color: #3d5a99;
+  background: #e7efff;
+  border-radius: 8rpx;
+  padding: 8rpx 14rpx;
+}
+
+/* ===== 方式切换 ===== */
+.switcher {
+  display: flex;
+  margin: 20rpx 24rpx 0;
+  background: #e9edf4;
+  border-radius: 16rpx;
+  padding: 6rpx;
+}
+
+.sw {
+  flex: 1;
+  height: 68rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 27rpx;
+  color: #6b7688;
+}
+
+.sw-on {
+  background: #fff;
+  color: #1a2233;
+  font-weight: 500;
+  box-shadow: 0 2rpx 8rpx rgba(26, 34, 51, 0.08);
+}
+
+/* ===== 文本框 ===== */
+.ta {
+  width: 100%;
+  min-height: 280rpx;
+  font-size: 25rpx;
+  line-height: 1.7;
+  color: #1a2233;
+  font-family: Menlo, Consolas, monospace;
+}
+
+.ta-ph {
+  color: #b6becd;
+  font-family: -apple-system, sans-serif;
+}
+
+.ta-foot {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  margin-top: 16rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f2f5f9;
+}
+
+.ta-link {
+  font-size: 24rpx;
+  color: #2563eb;
+}
+
+.ta-count {
+  margin-left: auto;
+  font-size: 22rpx;
+  color: #b6becd;
+}
+
+/* ===== 选文件 ===== */
+.file-pick {
+  display: flex;
+  align-items: center;
+  gap: 22rpx;
+  padding: 16rpx 0;
+}
+
+.file-icon {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 22rpx;
+  background: #eef4ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38rpx;
+}
+
+.file-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.file-title {
+  font-size: 28rpx;
+  color: #1a2233;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-sub {
+  margin-top: 8rpx;
+  font-size: 21rpx;
+  color: #9aa4b2;
+  line-height: 1.4;
+}
+
+.file-arrow {
+  font-size: 34rpx;
+  color: #c2c9d4;
+}
+
+/* ===== 预览 ===== */
+.prev-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 32rpx 8rpx;
+}
+
+.prev-head-title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.prev-item {
+  background: #fff;
+  border-radius: 18rpx;
+  margin: 16rpx 24rpx 0;
+  padding: 24rpx 26rpx;
+  border-left: 6rpx solid #07c160;
+}
+
+.prev-bad {
+  border-left-color: #e4393c;
+  background: #fffbfb;
+}
+
+.prev-no {
+  font-size: 22rpx;
+  color: #9aa4b2;
+}
+
+.prev-del {
+  font-size: 22rpx;
+  color: #e4393c;
+}
+
+.prev-title {
+  margin-top: 14rpx;
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a2233;
+  font-variant-numeric: tabular-nums;
+}
+
+.prev-meta {
+  margin-top: 8rpx;
+  font-size: 23rpx;
+  color: #6b7688;
+}
+
+.prev-addr {
+  margin-top: 6rpx;
+  font-size: 23rpx;
+  color: #6b7688;
+  line-height: 1.5;
+}
+
+.prev-err {
+  margin-top: 14rpx;
+  padding: 12rpx 16rpx;
+  background: #fdeeee;
+  border-radius: 10rpx;
+  font-size: 22rpx;
+  color: #c0282b;
+  line-height: 1.5;
+}
+
+/* ===== 结果页 ===== */
+.result {
+  background: linear-gradient(150deg, #2f6bff 0%, #1d4ed8 100%);
+  padding: 60rpx 32rpx 110rpx;
+  border-radius: 0 0 40rpx 40rpx;
+  text-align: center;
+}
+
+.result-icon {
+  width: 108rpx;
+  height: 108rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 56rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24rpx;
+}
+
+.result-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #fff;
+}
+
+.result-stats {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 60rpx;
+  margin-top: 36rpx;
+}
+
+.rs-item {
+  text-align: center;
+}
+
+.rs-num {
+  font-size: 56rpx;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+}
+
+.rs-num.rs-bad {
+  color: #ffd6d5;
+}
+
+.rs-label {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.rs-split {
+  width: 1rpx;
+  height: 60rpx;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.fail-item {
+  display: flex;
+  gap: 20rpx;
+  padding: 18rpx 0;
+  border-bottom: 1rpx solid #f2f5f9;
+}
+
+.fail-item:last-child {
+  border-bottom: none;
+}
+
+.fail-no {
+  width: 90rpx;
+  flex-shrink: 0;
+  font-size: 22rpx;
+  color: #9aa4b2;
+  padding-top: 4rpx;
+}
+
+.fail-order {
+  font-size: 25rpx;
+  color: #1a2233;
+  font-variant-numeric: tabular-nums;
+}
+
+.fail-reason {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #c0282b;
+  line-height: 1.5;
+}
+
+/* 结果页卡片上压 */
+.result + .card {
+  margin-top: -70rpx;
+}
+
+/* ===== 底部条 ===== */
+.bar-info {
+  font-size: 26rpx;
+  color: #6b7688;
+  flex: 1;
+}
+
+.bar-num {
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 32rpx;
+}
+
+.bar-main {
+  min-width: 240rpx;
+}

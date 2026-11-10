@@ -1,0 +1,125 @@
+<view class="page">
+
+  <!-- ===== 顶部数据区 ===== -->
+  <view class="hero">
+    <view class="hero-head">
+      <view class="flex-1">
+        <view class="hero-hi">{{greeting}}，{{merchant.name || '商家'}}</view>
+        <view class="hero-date">{{todayText}}</view>
+      </view>
+      <view class="hero-badge" wx:if="{{merchant && merchant.status !== 'active'}}">待开通</view>
+    </view>
+
+    <view class="hero-stats">
+      <view class="hs-item" bindtap="onGoOrderList">
+        <view class="hs-num">{{stats.today}}</view>
+        <view class="hs-label">今日单量</view>
+      </view>
+      <view class="hs-item" bindtap="onGoPendingPrint">
+        <view class="hs-num">{{stats.pendingPrint}}</view>
+        <view class="hs-label">待打印</view>
+      </view>
+      <view class="hs-item" bindtap="onGoException">
+        <view class="hs-num hs-danger">{{stats.exception}}</view>
+        <view class="hs-label">异常件</view>
+      </view>
+      <view class="hs-item" bindtap="onGoOrderList">
+        <view class="hs-num">{{stats.total}}</view>
+        <view class="hs-label">累计运单</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- ===== 骨架屏 ===== -->
+  <block wx:if="{{loading}}">
+    <view class="skeleton">
+      <view class="sk-line" style="width:40%"></view>
+      <view class="sk-line" style="width:80%"></view>
+      <view class="sk-line" style="width:60%"></view>
+    </view>
+  </block>
+
+  <!-- ===== 错误态 ===== -->
+  <block wx:elif="{{error}}">
+    <view class="card">
+      <empty-state icon="⚠️" text="数据加载失败" desc="{{error}}" button-text="重新加载" bind:action="onRetry" />
+    </view>
+  </block>
+
+  <block wx:else>
+    <!-- ===== 快捷操作 ===== -->
+    <view class="card action-card">
+      <view class="action" bindtap="onGoBatchImport">
+        <view class="action-icon icon-blue">⇪</view>
+        <view class="action-text">批量导入</view>
+        <view class="action-sub">粘贴或选 CSV</view>
+      </view>
+      <view class="action" bindtap="onGoPendingPrint">
+        <view class="action-icon icon-orange">🖨</view>
+        <view class="action-text">批量打单</view>
+        <view class="action-sub">取号并打印</view>
+      </view>
+      <view class="action" bindtap="onGoOrderList">
+        <view class="action-icon icon-green">☰</view>
+        <view class="action-text">运单查询</view>
+        <view class="action-sub">按状态筛选</view>
+      </view>
+      <view class="action" bindtap="onGoMine">
+        <view class="action-icon icon-gray">👤</view>
+        <view class="action-text">我的</view>
+        <view class="action-sub">账号与设置</view>
+      </view>
+    </view>
+
+    <!-- ===== 待处理提醒 ===== -->
+    <view class="notice" wx:if="{{stats.pendingPrint > 0}}" bindtap="onGoPendingPrint">
+      <text class="notice-icon">🔔</text>
+      <view class="flex-1">
+        <view class="notice-title">有 {{stats.pendingPrint}} 单待打印</view>
+        <view class="notice-sub">面单已生成，尽快打印交给快递员揽收</view>
+      </view>
+      <text class="notice-arrow">›</text>
+    </view>
+
+    <!-- ===== 最近运单 ===== -->
+    <view class="section-head">
+      <text class="section-title">最近运单</text>
+      <text class="section-more" bindtap="onGoOrderList">全部 ›</text>
+    </view>
+
+    <block wx:if="{{recent.length}}">
+      <view class="card order-card" wx:for="{{recent}}" wx:key="_id" data-id="{{item._id}}" bindtap="onTapOrder">
+        <view class="between">
+          <view class="row" style="gap:12rpx">
+            <text class="oc-express">{{item.expressName}}</text>
+            <text class="tag {{item.statusClass}}">{{item.statusText}}</text>
+          </view>
+          <text class="muted">{{item.timeText}}</text>
+        </view>
+        <view class="oc-body">
+          <view class="oc-receiver">
+            <text class="oc-name">{{item.receiver.name}}</text>
+            <text class="oc-region">{{item.regionLine}}</text>
+          </view>
+          <view class="oc-waybill" wx:if="{{item.waybillNo}}">{{item.waybillNo}}</view>
+          <view class="oc-waybill oc-waybill-empty" wx:else>未取号</view>
+        </view>
+        <view class="oc-foot">
+          <text class="muted">订单号 {{item.shopOrderNo}}</text>
+          <text class="muted">{{item.goods.weight}}kg / {{item.goods.count}}件</text>
+        </view>
+      </view>
+    </block>
+
+    <view wx:else class="card">
+      <empty-state
+        icon="📦"
+        text="还没有运单"
+        desc="粘贴订单文本或选择 CSV 文件，一次导入上百单"
+        button-text="开始批量导入"
+        bind:action="onGoBatchImport"
+      />
+    </view>
+  </block>
+
+</view>

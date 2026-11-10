@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "运单管理",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/empty-state",
+    "load-more": "/components/load-more/load-more"
+  }
+}

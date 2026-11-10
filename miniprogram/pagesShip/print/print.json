@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "打单",
+  "usingComponents": {
+    "empty-state": "/components/empty-state/empty-state"
+  }
+}

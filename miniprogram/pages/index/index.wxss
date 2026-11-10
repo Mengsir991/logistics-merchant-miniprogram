@@ -1,0 +1,253 @@
+/* ===== 顶部渐变区，向下用圆角过渡到页面底色 ===== */
+.hero {
+  background: linear-gradient(150deg, #2f6bff 0%, #1d4ed8 100%);
+  padding: 32rpx 32rpx 120rpx;
+  border-radius: 0 0 40rpx 40rpx;
+}
+
+.hero-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 8rpx 0 32rpx;
+}
+
+.hero-hi {
+  font-size: 38rpx;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: 0.5rpx;
+}
+
+.hero-date {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.hero-badge {
+  height: 44rpx;
+  padding: 0 18rpx;
+  border-radius: 22rpx;
+  background: rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+}
+
+.hero-stats {
+  display: flex;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 20rpx;
+  padding: 24rpx 0;
+}
+
+.hs-item {
+  flex: 1;
+  text-align: center;
+  position: relative;
+}
+
+.hs-item + .hs-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12rpx;
+  bottom: 12rpx;
+  width: 1rpx;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.hs-num {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.hs-num.hs-danger {
+  color: #ffd0ce;
+}
+
+.hs-label {
+  margin-top: 8rpx;
+  font-size: 22rpx;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* 让第一张卡片往上压，视觉上更紧凑 */
+.card:first-of-type,
+.action-card {
+  margin-top: -84rpx;
+}
+
+/* ===== 快捷操作 ===== */
+.action-card {
+  display: flex;
+  padding: 32rpx 8rpx;
+}
+
+.action {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.action-icon {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 26rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-bottom: 16rpx;
+}
+
+.icon-blue {
+  background: #eef4ff;
+  color: #2563eb;
+}
+
+.icon-orange {
+  background: #fff4e6;
+  color: #f59e0b;
+}
+
+.icon-green {
+  background: #e8f9f0;
+  color: #07c160;
+}
+
+.icon-gray {
+  background: #f2f4f8;
+  color: #6b7688;
+}
+
+.action-text {
+  font-size: 26rpx;
+  font-weight: 500;
+  color: #1a2233;
+}
+
+.action-sub {
+  margin-top: 6rpx;
+  font-size: 20rpx;
+  color: #9aa4b2;
+}
+
+/* ===== 提醒条 ===== */
+.notice {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin: 20rpx 24rpx;
+  padding: 26rpx 28rpx;
+  background: #fff8e8;
+  border: 1rpx solid #ffe3ad;
+  border-radius: 20rpx;
+}
+
+.notice-icon {
+  font-size: 36rpx;
+}
+
+.notice-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #a86600;
+}
+
+.notice-sub {
+  margin-top: 6rpx;
+  font-size: 22rpx;
+  color: #bd8a2e;
+}
+
+.notice-arrow {
+  font-size: 36rpx;
+  color: #d9ae5e;
+}
+
+/* ===== 分区标题 ===== */
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 36rpx 32rpx 12rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a2233;
+}
+
+.section-more {
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+/* ===== 运单卡片 ===== */
+.order-card {
+  padding: 26rpx 28rpx;
+}
+
+.oc-express {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a2233;
+}
+
+.oc-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20rpx 0 18rpx;
+}
+
+.oc-receiver {
+  display: flex;
+  align-items: baseline;
+  gap: 14rpx;
+  min-width: 0;
+  flex: 1;
+}
+
+.oc-name {
+  font-size: 28rpx;
+  color: #1a2233;
+  flex-shrink: 0;
+}
+
+.oc-region {
+  font-size: 24rpx;
+  color: #6b7688;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.oc-waybill {
+  flex-shrink: 0;
+  margin-left: 16rpx;
+  font-size: 24rpx;
+  color: #2563eb;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5rpx;
+}
+
+.oc-waybill-empty {
+  color: #c2c9d4;
+}
+
+.oc-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 18rpx;
+  border-top: 1rpx solid #f2f5f9;
+}

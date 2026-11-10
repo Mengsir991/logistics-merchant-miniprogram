@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "发货助手",
+  "navigationBarBackgroundColor": "#2f6bff",
+  "navigationBarTextStyle": "white",
+  "backgroundColor": "#2f6bff",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "empty-state": "/components/empty-state/empty-state",
+    "load-more": "/components/load-more/load-more"
+  }
+}

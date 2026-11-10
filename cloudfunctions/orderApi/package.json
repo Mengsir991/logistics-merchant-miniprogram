@@ -1,0 +1,9 @@
+{
+  "name": "orderApi",
+  "version": "1.0.0",
+  "description": "运单主接口：导入/列表/详情/取号/打印/取消/轨迹",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "~2.6.3"
+  }
+}

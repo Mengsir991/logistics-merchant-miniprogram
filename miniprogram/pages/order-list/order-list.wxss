@@ -1,0 +1,205 @@
+/* ===== 吸顶头 ===== */
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 80;
+  background: #f4f6fa;
+  padding: 16rpx 24rpx 0;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  height: 76rpx;
+  background: #fff;
+  border-radius: 38rpx;
+  padding: 0 26rpx;
+  gap: 14rpx;
+}
+
+.search-icon {
+  font-size: 26rpx;
+  opacity: 0.5;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+  color: #1a2233;
+}
+
+.search-ph {
+  color: #b6becd;
+}
+
+.search-clear {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  background: #eef1f6;
+  color: #8a94a6;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabs {
+  display: flex;
+  white-space: nowrap;
+  padding: 20rpx 0 16rpx;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  height: 60rpx;
+  padding: 0 28rpx;
+  margin-right: 14rpx;
+  border-radius: 30rpx;
+  background: #fff;
+  font-size: 26rpx;
+  color: #6b7688;
+  flex-shrink: 0;
+}
+
+.tab-on {
+  background: #2563eb;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ===== 汇总条 ===== */
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8rpx 32rpx 12rpx;
+}
+
+.summary-total {
+  font-size: 24rpx;
+  color: #8a94a6;
+}
+
+.selall {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 24rpx;
+  color: #6b7688;
+}
+
+/* ===== 勾选框 ===== */
+.cb {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  border: 2rpx solid #d2d9e5;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #fff;
+  line-height: 1;
+  transition: all 0.15s;
+}
+
+.cb-on {
+  background: #2563eb;
+  border-color: #2563eb;
+}
+
+/* ===== 列表项 ===== */
+.item {
+  display: flex;
+  align-items: flex-start;
+  background: #fff;
+  border-radius: 20rpx;
+  margin: 0 24rpx 16rpx;
+  padding: 26rpx 24rpx;
+}
+
+.cb-wrap {
+  padding: 4rpx 20rpx 0 0;
+}
+
+.item-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.express {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a2233;
+}
+
+.recv {
+  display: flex;
+  align-items: baseline;
+  gap: 16rpx;
+  margin-top: 20rpx;
+}
+
+.recv-name {
+  font-size: 28rpx;
+  color: #1a2233;
+  font-weight: 500;
+}
+
+.recv-phone {
+  font-size: 24rpx;
+  color: #6b7688;
+  font-variant-numeric: tabular-nums;
+}
+
+.recv-addr {
+  margin-top: 8rpx;
+  font-size: 24rpx;
+  color: #6b7688;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18rpx;
+  padding-top: 16rpx;
+  border-top: 1rpx solid #f2f5f9;
+}
+
+.waybill {
+  font-size: 24rpx;
+  color: #2563eb;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5rpx;
+}
+
+.waybill-empty {
+  color: #c2c9d4;
+  letter-spacing: 0;
+}
+
+/* ===== 底部操作条 ===== */
+.bar-info {
+  font-size: 26rpx;
+  color: #6b7688;
+  flex: 1;
+}
+
+.bar-num {
+  color: #2563eb;
+  font-weight: 600;
+  font-size: 32rpx;
+}
+
+.bar-main {
+  min-width: 220rpx;
+}

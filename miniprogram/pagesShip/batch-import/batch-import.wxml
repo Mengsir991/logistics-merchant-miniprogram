@@ -1,0 +1,141 @@
+<view class="page">
+
+  <!-- ============ 导入结果 ============ -->
+  <block wx:if="{{result}}">
+    <view class="result">
+      <view class="result-icon">✓</view>
+      <view class="result-title">导入完成</view>
+      <view class="result-stats">
+        <view class="rs-item">
+          <view class="rs-num rs-ok">{{result.successCount}}</view>
+          <view class="rs-label">成功</view>
+        </view>
+        <view class="rs-split"></view>
+        <view class="rs-item">
+          <view class="rs-num rs-bad">{{result.failCount}}</view>
+          <view class="rs-label">失败/跳过</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="card" wx:if="{{result.failed && result.failed.length}}">
+      <view class="title" style="font-size:28rpx;margin-bottom:18rpx">失败明细（前 100 条）</view>
+      <view class="fail-item" wx:for="{{result.failed}}" wx:key="index">
+        <text class="fail-no">{{item.rowIndex}}</text>
+        <view class="flex-1">
+          <view class="fail-order">{{item.shopOrderNo || '—'}}</view>
+          <view class="fail-reason">{{item.reason}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="bottom-bar">
+      <view class="btn btn-plain flex-1" bindtap="onReset">继续导入</view>
+      <view class="btn btn-primary flex-1" bindtap="onGoOrders">查看运单</view>
+    </view>
+  </block>
+
+  <!-- ============ 导入表单 ============ -->
+  <block wx:else>
+    <!-- 格式说明 -->
+    <view class="card tip-card">
+      <view class="tip-title">支持的格式</view>
+      <view class="tip-desc">每行一条订单，用 Tab 或逗号分隔，列顺序固定：</view>
+      <view class="tip-cols">
+        <text class="tip-col">订单号</text>
+        <text class="tip-col">收件人</text>
+        <text class="tip-col">收件电话</text>
+        <text class="tip-col">省</text>
+        <text class="tip-col">市</text>
+        <text class="tip-col">区/县</text>
+        <text class="tip-col">详细地址</text>
+        <text class="tip-col">重量kg</text>
+        <text class="tip-col">件数</text>
+        <text class="tip-col">快递编码</text>
+      </view>
+      <view class="tip-desc" style="margin-top:14rpx">
+        直接从 Excel 复制粘贴最省事；带表头会自动识别跳过。
+      </view>
+    </view>
+
+    <!-- 方式切换 -->
+    <view class="switcher">
+      <view class="sw {{mode === 'paste' ? 'sw-on' : ''}}" data-mode="paste" bindtap="onModeSwitch">粘贴文本</view>
+      <view class="sw {{mode === 'file' ? 'sw-on' : ''}}" data-mode="file" bindtap="onModeSwitch">选择文件</view>
+    </view>
+
+    <!-- 粘贴 -->
+    <view class="card" wx:if="{{mode === 'paste'}}">
+      <textarea
+        class="ta"
+        value="{{rawText}}"
+        placeholder="在这里粘贴订单数据，每行一条…"
+        placeholder-class="ta-ph"
+        maxlength="-1"
+        bindinput="onTextInput"
+        auto-height
+      />
+      <view class="ta-foot">
+        <text class="ta-link" bindtap="onFillSample">填入示例数据</text>
+        <text class="ta-link" bindtap="onClearText" wx:if="{{rawText}}">清空</text>
+        <text class="ta-count">{{rawText.length}} 字</text>
+      </view>
+    </view>
+
+    <!-- 选文件 -->
+    <view class="card" wx:else>
+      <view class="file-pick" bindtap="onChooseFile">
+        <view class="file-icon">📄</view>
+        <view class="file-text">
+          <view class="file-title">{{fileName || '从聊天记录选择 CSV / TXT'}}</view>
+          <view class="file-sub">Excel 请先「另存为 CSV UTF-8」，否则中文会乱码</view>
+        </view>
+        <text class="file-arrow">›</text>
+      </view>
+    </view>
+
+    <!-- 解析按钮 -->
+    <view class="card" wx:if="{{!parsed}}">
+      <view class="btn btn-primary" bindtap="doParse">解析并预览</view>
+    </view>
+
+    <!-- 预览 -->
+    <block wx:if="{{parsed}}">
+      <view class="prev-head">
+        <text class="prev-head-title">解析结果</text>
+        <view class="row" style="gap:16rpx">
+          <text class="tag tag-success">正常 {{validCount}}</text>
+          <text class="tag tag-danger" wx:if="{{invalidCount}}">异常 {{invalidCount}}</text>
+        </view>
+      </view>
+
+      <view class="prev-item {{item.ok ? '' : 'prev-bad'}}" wx:for="{{rows}}" wx:key="lineNo">
+        <view class="between">
+          <text class="prev-no">第 {{item.lineNo}} 行</text>
+          <view class="row" style="gap:18rpx">
+            <text class="tag {{item.ok ? 'tag-success' : 'tag-danger'}}">{{item.ok ? '正常' : '有问题'}}</text>
+            <text class="prev-del" data-index="{{index}}" catchtap="onRemoveRow">删除</text>
+          </view>
+        </view>
+
+        <view class="prev-title">{{item.raw.shopOrderNo || '（无订单号）'}}</view>
+        <view class="prev-meta">{{item.raw.receiverName}} · {{item.raw.receiverPhone}}</view>
+        <view class="prev-addr">{{item.raw.province}}{{item.raw.city}}{{item.raw.district}}{{item.raw.detail}}</view>
+        <view class="prev-meta">{{item.raw.weight}}kg · {{item.raw.count}}件 · {{item.raw.expressCode}}</view>
+
+        <view class="prev-err" wx:if="{{!item.ok}}">
+          {{item.errors[0]}}{{item.errors.length > 1 ? '（共 ' + item.errors.length + ' 项问题）' : ''}}
+        </view>
+      </view>
+
+      <view class="bottom-bar">
+        <view class="bar-info">可导入 <text class="bar-num">{{validCount}}</text> 条</view>
+        <view
+          class="btn {{validCount && !submitting ? 'btn-primary' : 'btn-primary btn-disabled'}} bar-main"
+          bindtap="onSubmit"
+        >{{submitting ? '提交中…' : '确认导入'}}</view>
+      </view>
+    </block>
+  </block>
+
+</view>
